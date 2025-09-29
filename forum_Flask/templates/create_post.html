@@ -1,0 +1,21 @@
+<!-- Додавання поста -->
+{% extends "base.html" %}
+{% block title %}Нова тема{% endblock %}
+{% block content %}
+<div class="new-topic-form">
+  <h2>Нова тема</h2>
+  <form method="post" action="{{ url_for('main.add_post') }}">
+    <label for="title">Тема</label>
+    <input type="text" id="title" name="title">
+
+    <label for="content">Текст</label>
+    <textarea id="content" name="content"></textarea>
+
+    <label for="tags">Теги (через кому)</label>
+    <input type="text" id="tags" name="tags">
+
+    <button type="submit">Опублікувати</button>
+  </form>
+</div>
+
+{% endblock %}

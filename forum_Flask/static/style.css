@@ -1,0 +1,203 @@
+:root{--accent:#2b7cff;--muted:#666;--bg:#f7f9fb}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, Arial;line-height:1.45;background:var(--bg);color:#222;margin:0}
+.container{width:92%;max-width:1100px;margin:0 auto;padding:20px}
+.topbar{background:#fff;border-bottom:1px solid #e6eef8}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.brand a{color:var(--accent);text-decoration:none;font-weight:700}
+.nav a{margin-left:14px;color:#333;text-decoration:none}
+.btn{background:var(--accent);color:#fff;padding:6px 10px;border-radius:6px;text-decoration:none;border: 2px;cursor:pointer}
+.btn-ghost{background:transparent;border:1px solid #ccc;padding:6px 10px;border-radius:6px;color:#333}
+.btn-danger{background:#e05a5a;color:#fff;padding:6px 10px;border-radius:6px;border:0}
+.form-card{background:#fff;padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(50,50,93,0.06);max-width:640px}
+.posts-table{width:100%;border-collapse:collapse;background:#fff;margin-top:12px}
+.posts-table th, .posts-table td{border-bottom:1px solid #eee;padding:12px;text-align:left}
+.posts-table thead th{background:#fafcff;font-weight:600}
+.post-title a{color:#111;text-decoration:none;font-weight:600}
+.post-card{background:#fff;padding:16px;border-radius:8px;margin-bottom:12px}
+.tags{margin-top:6px}
+.tag{display:inline-block;background:#eef6ff;color:var(--accent);padding:4px 8px;border-radius:12px;font-size:12px;margin-right:6px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.search input{padding:8px;border-radius:6px;border:1px solid #ddd}
+.search button{padding:8px 10px;margin-left:8px}
+.flashes{list-style:none;padding:0;margin:8px 0}
+.flashes li{background:#fff3cd;padding:8px;border-radius:6px;border:1px solid #ffeeba}
+.comment{background:#fff;padding:8px;border-radius:6px;margin:8px 0}
+.footer{padding:14px 0;text-align:center;color:var(--muted);margin-top:30px}
+@media (max-width:720px){.topbar .container{flex-direction:column;gap:8px}.toolbar{flex-direction:column;align-items:stretch}}
+
+.form-container {
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.form-container input::placeholder {
+    color: rgba(0, 0, 0, 0.4); /* напівпрозорі підказки */
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container button:hover {
+    background: #0056b3;
+}
+
+/* Блок з формою */
+.comment-form {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: none;
+  transition: border-color 0.2s;
+}
+
+.comment-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.comment-form button {
+  margin-top: 10px;
+  background: #007bff;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.comment-form button:hover {
+  background: #0056b3;
+}
+
+/* Список коментарів */
+.comment-list {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.comment {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment .author {
+  font-weight: bold;
+  color: #333;
+}
+
+.comment .date {
+  font-size: 12px;
+  color: #777;
+  margin-left: 10px;
+}
+
+.comment .content {
+  margin-top: 5px;
+  color: #444;
+}
+
+
+/* Контейнер форми */
+.new-topic-form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+/* Заголовок */
+.new-topic-form h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* Лейбли */
+.new-topic-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Поля вводу */
+.new-topic-form input[type="text"],
+.new-topic-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 5px;
+  transition: border-color 0.2s;
+}
+
+.new-topic-form input[type="text"]:focus,
+.new-topic-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Текстове поле */
+.new-topic-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Кнопка */
+.new-topic-form button {
+  margin-top: 15px;
+  background: #007bff;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.new-topic-form button:hover {
+  background: #0056b3;
+}
+

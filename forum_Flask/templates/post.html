@@ -1,0 +1,50 @@
+<!-- Деталі поста + коментарі -->
+{% extends "base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<article class="post-card">
+  <h2>{{ post.title }}</h2>
+  <p class="meta">Автор: {{ post.author.username }} · {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+  <div class="body">{{ post.content }}</div>
+
+  <div class="post-actions">
+    {% if current_user.is_authenticated %}
+      <form method="post" action="{{ url_for('main.like_post', post_id=post.id) }}">
+        <button type="submit" class="btn-ghoust">👍 {{ post.likes|length }}</button>
+      </form>
+      {% if current_user.role in ['admin','moderator'] or current_user.id == post.author_id %}
+        <a href="{{ url_for('main.edit_post', post_id=post.id) }}" class="btn">Редагувати</a>
+        <form method="post" action="{{ url_for('main.delete_post', post_id=post.id) }}" style="display:inline;">
+          <button class="btn-danger" type="submit">Видалити</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </div>
+</article>
+
+<section class="comments">
+    <!-- Форма додавання коментаря -->
+  <div class="comment-form">
+    <form method="post" action="{{ url_for('main.add_comment', post_id=post.id) }}">
+      <textarea name="content" rows="3" placeholder="Напиши свій коментар..."></textarea>
+      <button type="submit">Додати</button>
+    </form>
+  </div>
+
+  <!-- Список коментарів -->
+  <div class="comment-list">
+    <h4>Коментарі:</h4>
+    {% for comment in post.comments %}
+      <div class="comment">
+        <span class="author">{{ comment.user.username }}</span>
+        <span class="date">{{ comment.created_at.strftime("%d.%m.%Y %H:%M") }}</span>
+        <div class="content">{{ comment.content }}</div>
+      </div>
+    {% else %}
+      <p class="text-muted">Поки що немає коментарів.</p>
+    {% endfor %}
+  </div>
+
+
+</section>
+{% endblock %}

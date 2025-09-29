@@ -1,0 +1,59 @@
+<!-- Список постів -->
+{% extends "base.html" %}
+{% block title %}Головна — MiniForum{% endblock %}
+{% block content %}
+<div class="toolbar">
+  <form class="search" action="{{ url_for('main.index') }}" method="get">
+    <input name="q" placeholder="Пошук по темі або автору..." value="{{ request.args.get('q','') }}">
+    <button>🔎</button>
+  </form>
+
+  {% if current_user.is_authenticated %}
+    <a href="{{ url_for('main.create_post') }}" class="btn">➕ Нова тема</a>
+  {% endif %}
+</div>
+
+<table class="posts-table">
+  <thead>
+    <tr>
+      <th>Тема</th>
+      <th>Автор</th>
+      <th>Відповіді</th>
+      <th>
+        Остання активність
+        <a class="sort" href="{{ url_for('main.index', sort='last_activity', order='asc') }}">▲</a>
+        <a class="sort" href="{{ url_for('main.index', sort='last_activity', order='desc') }}">▼</a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    <tr>
+      <td class="post-title">
+        <a href="{{ url_for('main.post_detail', post_id=post.id) }}">{{ post.title }}</a>
+          <div class="post">
+            <p class="content">{{ post.content }}</p>
+            <small>Автор: {{ post.author.username }}</small>
+                <!-- кнопка видалення -->
+            {% if current_user.is_authenticated and (current_user.role in ['admin', 'moderator'] or current_user.id == post.user_id) %}
+              <form action="{{ url_for('main.delete_post', post_id=post.id) }}" method="POST">
+                <button type="submit">Видалити</button>
+              </form>
+            {% endif %}
+          </div>
+        <div class="tags">
+          {% for t in post.tags %}
+            <span class="tag">{{ t.name }}</span>
+          {% endfor %}
+        </div>
+      </td>
+      <td>{{ post.author.username }}</td>
+      <td>{{ post.comments|length }}</td>
+      <td>{{ post.last_activity.strftime('%Y-%m-%d %H:%M') if post.last_activity else '' }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">Немає постів</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

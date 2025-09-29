@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="new-topic-form">
+  <h2>Редагувати пост</h2>
+  <form method="post">
+    <label for="title">Тема</label>
+    <input type="text" id="title" name="title" value="{{ post.title }}" required>
+
+    <label for="content">Текст</label>
+    <textarea id="content" name="content" required>{{ post.content }}</textarea>
+
+    <button type="submit">Зберегти</button>
+  </form>
+</div>
+{% endblock %}
